@@ -7,7 +7,12 @@ export const restartTime = (number) => {
     };
 };
 export const loadCurrentTime = () => {
-    const currentTime = Math.abs(new Date());
+    const year = new Date().getFullYear().toString();
+    const month = new Date().getMonth().toString();
+    const day = new Date().getDate().toString();
+    
+    const currentTime = year + month + day;
+    console.log(currentTime);
     return {
         type: CURRENT_TIME,
         payload: currentTime
