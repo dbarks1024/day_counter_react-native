@@ -9,7 +9,7 @@ class Counter extends Component {
         return (
             <Card>
                 <CardSection>
-                    <Text style={styles.dayTextStyles} >10</Text>
+                    <Text style={styles.dayTextStyles} >{this.props.time}</Text>
                 </CardSection>
             </Card>
         );
@@ -22,4 +22,8 @@ const styles = {
     }
 };
 
-export default connect(null, { restartTime })(Counter);
+const mapStateToProps = state => {
+    return { time: state.time.time };
+};
+
+export default connect(mapStateToProps, { restartTime })(Counter);

@@ -1,6 +1,6 @@
-export const timeRestart = ({ prop, value }) => {
+export const restartTime = (number) => {
     return {
-        type: 'time_restart',
-        payload: { prop, value }
+        type: 'restart_time',
+        payload: number
     };
 };

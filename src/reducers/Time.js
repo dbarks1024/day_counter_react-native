@@ -1,10 +1,12 @@
-const INITIAL_STATE = {};
+const INITIAL_STATE = { time: 1 };
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-    case 'time_restart':
+    case 'restert_time':
         console.log(action);
-        return action.payload;
+        return { ...state,
+            time: action.payload
+        };
         default:
         return state;
     }
