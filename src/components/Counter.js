@@ -12,13 +12,18 @@ class Counter extends Component {
     render() {
         return (
             <Card>
-                <CardSection>
+                <CardSection style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={styles.dayTextStyles} >{this.props.time}</Text>
                 </CardSection>
                 <CardSection>
                     <Button
                     onPress={this.props.restartTime.bind(this)}
                     >Restart</Button>
+                    <Button
+                    onPress={this.props.loadCurrentTime.bind(this)} 
+                    >
+                    Refresh
+                    </Button>
                 </CardSection>
             </Card>
         );
@@ -27,7 +32,7 @@ class Counter extends Component {
 
 const styles = {
     dayTextStyles: {
-        fontSize: 30,
+        fontSize: 100,
     }
 };
 
