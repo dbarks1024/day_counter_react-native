@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { Time } from './Time';
+import Time from './Time';
 
 export default combineReducers({
-    timeRestart: Time
+    time: Time
 });
