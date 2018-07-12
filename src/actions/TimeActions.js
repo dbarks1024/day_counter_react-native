@@ -10,21 +10,25 @@ export const restartTime = () => {
     storeData('last_restart', currentDate());
     return {
         type: RESTART_TIME,
-        payload: currentDate()
+        payload: 0
     };
 };
 export const loadCurrentTime = () => {
-    retrieveData('last_restart');
-    return {
-        type: CURRENT_TIME,
-        payload: currentDate()
+    return (dispatch) => {
+        retrieveDateDifference('last_restart')
+            .then((date) => {
+                dispatch({
+                    type: CURRENT_TIME,
+                    payload: date
+                });
+            });
     };
 };
+
 
 const currentDate = () => {
     const year = new Date().getFullYear().toString();
     const month = '0' + new Date().getMonth().toString();
-    console.log(month);
     const day = '0' + new Date().getDate().toString();
 
     return year + month.slice(-2) + day.slice(-2);
@@ -38,14 +42,15 @@ const storeData = async (key, value) => {
     }
 };
 
-const retrieveData = async (key) => {
+const retrieveDateDifference = async (key) => {
     try {
         const value = await AsyncStorage.getItem(key);
         if (value !== null) {
             console.log('stored value: ' + value);
-            return value;
+            return value - currentDate();
         }
         console.log('no value in storage');
+        return 0;
     } catch (error) {
         throw new Error(error);
     }
