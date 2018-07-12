@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text } from 'react-native';
-import { CardSection, Card } from './common';
+import { CardSection, Card, Button } from './common';
 import { restartTime, loadCurrentTime } from '../actions';
 
 class Counter extends Component {
@@ -14,6 +14,11 @@ class Counter extends Component {
             <Card>
                 <CardSection>
                     <Text style={styles.dayTextStyles} >{this.props.time}</Text>
+                </CardSection>
+                <CardSection>
+                    <Button
+                    onPress={this.props.restartTime.bind(this)}
+                    >Restart</Button>
                 </CardSection>
             </Card>
         );
