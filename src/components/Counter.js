@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text } from 'react-native';
 import { CardSection, Card } from './common';
-import { restartTime } from '../actions';
+import { restartTime, loadCurrentTime } from '../actions';
 
 class Counter extends Component {
+    componentWillMount() {
+        this.props.loadCurrentTime();
+    }
+
     render() {
         return (
             <Card>
@@ -26,4 +30,4 @@ const mapStateToProps = state => {
     return { time: state.time.time };
 };
 
-export default connect(mapStateToProps, { restartTime })(Counter);
+export default connect(mapStateToProps, { restartTime, loadCurrentTime })(Counter);
